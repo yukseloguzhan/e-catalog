@@ -1,0 +1,143 @@
+﻿@using Catalog.Entities.Concrete
+@model ICollection<Product>
+
+@{
+    ViewData["Title"] = "Liste";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@{ string color = ""; }
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<table class="table table-hover" background="../AdminPanel/assets/img/product_background.jpg">
+    <thead style="background-color:aquamarine">
+        <tr style="color:brown;font-size:large">
+            <th style="width: 1%">
+                Kodu
+            </th>
+            <th style="width: 20%">
+                Başlık
+            </th>
+            <th style="width: 15%">
+                Fiyat/Taksit
+            </th>
+            <th style="width: 10%">
+                Aktiflik
+            </th>
+            <th style="width: 8%" class="text-center">
+                Kategori
+            </th>
+            <th style="width: 20%">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            if (item.CategoryId == 1)
+            {
+                color = "badge badge-warning";
+            }
+
+            if (item.CategoryId == 2)
+            {
+                color = "badge badge-success";
+            }
+
+            if (item.CategoryId == 3)
+            {
+                color = "badge badge-info";
+            }
+
+            if (item.CategoryId == 4)
+            {
+                color = "badge badge-secondary";
+            }
+
+
+            <tr>
+                <td style="font-weight:bold">
+                    @item.Code
+                </td>
+                <td>
+                    <a href="/Products/Detail/@item.Id">
+                        @item.Title
+                    </a>
+                    <br />
+                    <small>
+                        @item.CreateDate
+                    </small>
+                </td>
+                <td>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <img alt="Avatar" style="border-radius: 50%; display: inline; width: 2.5rem;" src="~/Frontend2/ProductImages/@item.ImageURL">
+                            @item.Price ₺ / @item.Installment taksit
+                        </li>
+                    </ul>
+                </td>
+                <td>
+
+                    @if (item.Status == true)
+                    {
+                        <span class="badge badge-success">@item.Status</span>
+                    }
+
+
+                    @if (item.Status == false)
+                    {
+                        <span class="badge badge-warning">@item.Status</span>
+                    }
+                </td>
+                <td class="project-state">
+                    <span class="@color">@item.Category.Name</span>
+                </td>
+                <td class="project-actions text-right">
+                    <a class="btn btn-primary btn-sm" href="/Products/Detail/@item.Id">
+                        <i class="fa fa-folder">
+                        </i>
+                        Açıklaması
+                    </a>
+                    <a class="btn btn-info btn-sm" href="/Products/Update/@item.Id">
+                        <i class="fa fa-edit">
+                        </i>
+                        Düzenle
+                    </a>
+                    <a class="btn btn-danger btn-sm" onclick="Confirm()" href="/Products/Delete/@item.Id" >
+                        <i class="fa fa-trash">
+                        </i>
+                        Sil
+                    </a>
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function Confirm() {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("BAŞARILI! İstediğiniz kayıt silindi!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("İptal edildi!");
+                }
+            });
+    }
+</script>
+
+<a href="/Products/Add/" class="btn btn-primary">Yeni Ürün Ekle</a>

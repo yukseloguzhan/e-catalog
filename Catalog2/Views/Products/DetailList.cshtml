@@ -1,0 +1,79 @@
+﻿@using Catalog.Entities.Concrete
+@model ICollection<Product>
+
+@{
+    ViewData["Title"] = "Detaylı Liste";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+
+
+<link rel="stylesheet" href="../be/assets/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="../be/assets/css/animate.min.css" type="text/css">
+<link rel="stylesheet" href="../be/assets/css/style.css" type="text/css">
+
+
+
+
+
+
+<section id="blog">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="title">
+                <h2>TÜM ÜRÜNLERİMİZ</h2>
+
+            </div>
+
+            @foreach (var item in Model)
+            {
+
+
+
+                <div class="col-xs-12 col-sm-4 col-md-4 wow bounceIn animated" data-wow-delay=".1s" style="margin-bottom:50px">
+                    <div class="blog-img">
+
+                        <img src="~/Frontend2/ProductImages/@item.ImageURL" width="348" height="227" />
+                    </div>
+                    <div class="row" >
+                        <div class="data">@item.Price ₺</div>
+                        <div class="month">@item.Code || @item.Category.Name</div>
+                    </div>
+                    <div class="row">
+                        <h3 style="text-align:center">@item.Title</h3>
+
+                                                
+
+
+
+                        <a href="/Products/Detail/@item.Id" class="btn btn-success" style="background-color:cornflowerblue;color:white">DAHA FAZLA</a>
+                        <a href="/Products/Update/@item.Id" class="btn btn-success" style="background-color:burlywood; color: white">DÜZENLE</a>
+                        <a href="/Products/Delete/@item.Id" class="btn btn-success" style="background-color: red; color: white">SİL</a>
+
+                    </div>
+                </div>
+
+            }
+
+
+
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+

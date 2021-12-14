@@ -1,0 +1,31 @@
+﻿@model Catalog.Entities.Concrete.Category
+
+@{
+    ViewData["Title"] = "Kategori Güncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 style="font-weight:bold">KATEGORİ GÜNCELLE</h1>
+<br />
+
+@using (Html.BeginForm("Update", "Categories", FormMethod.Post))
+{
+    <div class="form-group">
+
+        @Html.Label("Kategori Adı:")
+        @Html.TextBoxFor(x => x.Name, new { PlaceHolder = "Kategori ismi girin...", @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Name, "", new { @style = "color:red" })
+        <br /><br />
+        @Html.Label("Acıklama Yazın:")
+        @Html.TextAreaFor(x => x.Description, new { PlaceHolder = "Kategori açıklaması girin...", @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Description, "", new { @style = "color:red" })
+        <br /><br />
+        @Html.Label("Aktiflik durumu giriniz:")
+        @Html.DropDownListFor(x => x.Status, (List<SelectListItem>)ViewBag.StatusType, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-info">Güncelle</button>
+        @Html.HiddenFor(x => x.CategoryId, new { @class = "form-control" })
+
+    </div>
+
+}

@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    #daire {
+        width: 250px;
+        height: 250px;
+        color: white;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        position: static;
+        background-color: red;
+        border-radius: 200px;
+        font-size:30px;
+    }
+</style>
+
+<div id="daire" >Toplam ürün sayısı: @ViewBag.productCount</div>
+<div id="daire" >Toplam kategori sayısı: @ViewBag.categoryCount</div>
+<div id="daire">En pahalı ürün: @ViewBag.expensiveProduct ₺</div>
+<div id="daire">En fazla ürünü olan kategori: @ViewBag.mostProductsCategory : @ViewBag.count</div>

@@ -1,0 +1,120 @@
+﻿@using Catalog.Entities.Concrete
+@model ICollection<Product>
+
+
+@{
+    ViewData["Title"] = "Sil3";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Catalog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,700|Muli:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="../Frontend2/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="../Frontend2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Frontend2/css/jquery-ui.css">
+    <link rel="stylesheet" href="../Frontend2/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../Frontend2/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../Frontend2/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="../Frontend2/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="../Frontend2/fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="../Frontend2/css/aos.css">
+    <link rel="stylesheet" href="../Frontend2/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+
+
+    <div class="site-wrap">
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+
+        <div class="intro-section custom-owl-carousel" id="home-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-5 mr-auto" data-aos="fade-up">
+
+                        <div class="owl-carousel slide-one-item-alt-text">
+
+                            @foreach (var item in Model)
+                            {
+
+
+
+                                <div class="slide-text">
+                                    <h1>@item.Title</h1>
+                                    <div>
+                                        <i class="icon icon-timer"><span style="color:green;font-weight:bold"> @item.CreateDate</span></i>
+                                        <i class="icon icon-address-card" style="float:right"><span style="color:green;font-weight:bold"> @item.Code</span></i>
+                                    </div>
+                                    <p class="mb-5">@Html.Raw(item.Description)</p>
+
+                                    <div>
+                                        <i class="far fa-money-bill-alt fa-3x"><span style="color:orangered;font-weight:bold;font-size:30px;"> NAKİT FİYAT : @item.Price ₺</span></i>
+                                    </div>
+                                    <br />
+                                    <p><a href="#" target="_blank" class="btn btn-outline-light py-3 px-5">Get Started</a></p>
+                                </div>
+
+                            }
+
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6 ml-auto" data-aos="fade-up" data-aos-delay="100">
+
+
+
+                        <div class="owl-carousel slide-one-item-alt">
+
+                            @foreach (var x in Model)
+                            {
+                                <img src="~/Frontend2/ProductImages/@x.ImageURL" alt="Image" class="img-fluid">
+                            }
+                        </div>
+
+                        <div class="owl-custom-direction">
+                            <a href="#" class="custom-prev"><span class="icon-keyboard_arrow_left"></span></a>
+                            <a href="#" class="custom-next"><span class="icon-keyboard_arrow_right"></span></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../Frontend2/js/jquery-3.3.1.min.js"></script>
+    <script src="../Frontend2/js/jquery-ui.js"></script>
+    <script src="../Frontend2/js/popper.min.js"></script>
+    <script src="../Frontend2/js/bootstrap.min.js"></script>
+    <script src="../Frontend2/js/owl.carousel.min.js"></script>
+    <script src="../Frontend2/js/jquery.easing.1.3.js"></script>
+    <script src="../Frontend2/js/aos.js"></script>
+    <script src="../Frontend2/js/jquery.fancybox.min.js"></script>
+    <script src="../Frontend2/js/jquery.waypoints.min.js"></script>
+    <script src="../Frontend2/js/jquery.animateNumber.min.js"></script>
+    <script src="../Frontend2/js/jquery.sticky.js"></script>
+    <script src="../Frontend2/js/main.js"></script>
+
+
+</body>
+</html>

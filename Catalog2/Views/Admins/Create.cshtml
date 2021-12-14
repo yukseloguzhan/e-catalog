@@ -1,0 +1,32 @@
+﻿@model RegisterModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>User Create</h1>
+
+@using (Html.BeginForm("Create", "Admins", FormMethod.Post))
+{
+    <div class="form-group">
+
+        <div class="text-danger" asp-validation-summary="All"></div>
+
+        @Html.Label("User name:")
+        @Html.TextBoxFor(x => x.UserName, new { PlaceHolder = "Username", @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.UserName, "", new { @style = "color:red" })
+        <br /><br />
+        @Html.Label("Password:")
+        @Html.PasswordFor(x => x.Password, new { PlaceHolder = "Password", @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Password, "", new { @style = "color:red" })
+        <br /><br />
+        @Html.Label("Email:")
+        @Html.TextBoxFor(x => x.Email, new { PlaceHolder = "Email", @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Email, "", new { @style = "color:red" })
+        <br />
+        <button class="btn btn-info">Kaydet</button>
+        <a href="/Admins/HomePage" class="btn btn-danger">İptal</a>
+
+    </div>
+}

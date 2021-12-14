@@ -1,0 +1,37 @@
+﻿@using Catalog.Entities.Concrete
+@model List<Category>
+
+
+@{
+    ViewData["Title"] = "Kategori Listesi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<table class="table table-boardered" background="../AdminPanel/assets/img/category_background.jpg">
+    <tr>
+        @*<th>ID</th>*@
+        <th>Kategori Adı</th>
+        <th>Açıklaması</th>
+        <th>Durumu</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+        <th>DETAYLAR</th>
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        <tr>
+           
+            <td>@x.Name</td>
+            <td>@x.Description</td>
+            <td>@x.Status</td>
+            <td><a href="/Categories/Delete/@x.CategoryId" class="btn btn-danger">SİL</a></td>
+            <td><a href="/Categories/Update/@x.CategoryId" class="btn btn-warning">GÜNCELLE</a></td>
+            <td><a href="/Categories/Detail/@x.CategoryId" class="btn btn-success">DETAYLAR</a></td>
+        </tr>
+    }
+
+</table>
+
+<a href="/Categories/Add" class="btn btn-primary">YENİ KATEGORİ</a>

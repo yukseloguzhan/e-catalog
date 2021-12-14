@@ -1,0 +1,45 @@
+﻿@using Catalog2.Models.Identity
+@model IEnumerable<ApplicationUser>
+
+@{
+    ViewData["Title"] = "Liste";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">User Id</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Email</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="3" class="text-center">NO USERS!</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.Id</td>
+                    <td>@x.UserName</td>
+                    <td>@x.Email</td>
+                </tr>
+            }
+        }
+
+    </tbody>
+
+</table>
+
+
+<a href="/Admins/Create" class="btn btn-success">Create User</a>
